@@ -8,30 +8,37 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <section>
-        <p id="seq"></p>
-        <p id="va"></p>
-        <p id="pq"></p>
-    </section>
+    <main>
+      <section>
+        <div
+          onclick="Btn(1)"
+          class="boxColor"
+          style="background-color: red"
+          id="verm"
+        ></div>
+        <div
+          onclick="Btn(2)"
+          class="boxColor"
+          style="background-color: green"
+          id="verd"
+        ></div>
+      </section>
+      <section>
+        <div
+          onclick="Btn(3)"
+          class="boxColor"
+          style="background-color: blue"
+          id="azul"
+        ></div>
+        <div
+          onclick="Btn(4)"
+          class="boxColor"
+          style="background-color: yellow"
+          id="amarelo"
+        ></div>
+      </section>
+    </main>
 
-    <section>
-      <div onclick="red()" class="boxColor" style="background-color: red"></div>
-      <div
-        onclick="green()"
-        class="boxColor"
-        style="background-color: green"
-      ></div>
-      <div
-        onclick="blue()"
-        class="boxColor"
-        style="background-color: blue"
-      ></div>
-      <div
-        onclick="yellow()"
-        class="boxColor"
-        style="background-color: yellow"
-      ></div>
-    </section>
     <script src="script.js"></script>
   </body>
 </html>

@@ -1,10 +1,13 @@
-const pSEQ = document.getElementById("seq");
-const pPQ = document.getElementById("pq");
-const plSEQ = document.getElementById("va");
+const btnverm = document.getElementById("verm");
+const btnverd = document.getElementById("verd");
+const btnazul = document.getElementById("azul");
+const btnamarelo = document.getElementById("amarelo");
 
 let posSequencia = 0;
 let valorAtual = 0;
+let lista = [];
 let sequencia = [];
+let QuantidadePartidas = 7;
 
 function getRandomInt() {
   return Math.floor(Math.random() * (4 - 1 + 1) + 1);
@@ -16,16 +19,14 @@ const reset = () => {
   posSequencia = 0;
   valorAtual = 0;
   sequencia = [];
+  lista = [];
 
   inicio();
 };
 
 const inicio = () => {
   sequencia.push(getRandomInt());
-
-  pSEQ.innerText = `Sequencia:${sequencia}`;
-  pPQ.innerText = `posição da sequencia:${posSequencia}`;
-  plSEQ.innerText = `Tamanho da sequencia: ${sequencia.length}`;
+  intervalo();
 };
 
 const naSequencia = () => {
@@ -39,12 +40,14 @@ const naSequencia = () => {
 
 const fimSequencia = () => {
   if (valorAtual == sequencia[posSequencia]) {
-    if (sequencia.length == 3) {
+    if (sequencia.length == QuantidadePartidas) {
       alert("Parabéns, você ganhou");
+      console.log(lista);
 
       posSequencia = 0;
       valorAtual = 0;
       sequencia = [];
+      lista = [];
 
       inicio();
     } else {
@@ -52,6 +55,7 @@ const fimSequencia = () => {
       valorAtual = 0;
 
       sequencia.push(getRandomInt());
+      intervalo();
     }
   } else {
     reset();
@@ -66,37 +70,45 @@ const verificacao = () => {
   }
 };
 
-const red = () => {
-  valorAtual = 1;
+const Btn = (valor) => {
+  valorAtual = valor;
   verificacao();
-
-  pSEQ.innerText = `Sequencia:${sequencia}`;
-  pPQ.innerText = `posição da sequencia:${posSequencia}`;
-  plSEQ.innerText = `Tamanho da sequencia: ${sequencia.length}`;
 };
-const green = () => {
-  valorAtual = 2;
-  verificacao();
 
-  pSEQ.innerText = `Sequencia:${sequencia}`;
-  pPQ.innerText = `posição da sequencia:${posSequencia}`;
-  plSEQ.innerText = `Tamanho da sequencia: ${sequencia.length}`;
+//===================================
+
+const brilho = (btn) => {
+  btn.style.opacity = 0.6;
+  setTimeout(() => {
+    btn.style.opacity = 1;
+  }, 1000);
 };
-const blue = () => {
-  valorAtual = 3;
-  verificacao();
 
-  pSEQ.innerText = `Sequencia:${sequencia}`;
-  pPQ.innerText = `posição da sequencia:${posSequencia}`;
-  plSEQ.innerText = `Tamanho da sequencia: ${sequencia.length}`;
-};
-const yellow = () => {
-  valorAtual = 4;
-  verificacao();
+const intervalo = () => {
+  let LastSeq = sequencia.length - 1;
+  switch (sequencia[LastSeq]) {
+    case 1:
+      lista.push(btnverm);
+      break;
+    case 2:
+      lista.push(btnverd);
+      break;
+    case 3:
+      lista.push(btnazul);
+      break;
+    case 4:
+      lista.push(btnamarelo);
+      break;
+    default:
+      console.error("Erro na função intervalo, elemento:", sequencia[LastSeq]);
+      break;
+  }
 
-  pSEQ.innerText = `Sequencia:${sequencia}`;
-  pPQ.innerText = `posição da sequencia:${posSequencia}`;
-  plSEQ.innerText = `Tamanho da sequencia: ${sequencia.length}`;
+  for (let index = 0; index <= lista.length - 1; index++) {
+    setTimeout(() => {
+      brilho(lista[index]);
+    }, 820 * index);
+  }
 };
 
 inicio();
